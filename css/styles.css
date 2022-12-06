@@ -1,0 +1,25 @@
+h1, h2 {
+  font-family: 'Crimson Pro', serif;
+}
+
+#storeProfiles {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+nav li {
+  display: inline-block;
+  font-size: 20px;
+  margin-right: 30px;
+  color: #88F2F2;
+  font-family: 'Crimson Pro', serif;
+  font-size: 20px;
+}
+
+body {
+  border-color: #000;
+  background-color: #88F2F2;
+  border: 2px;
+  margin: 5%;
+  padding: 2%;
+
+}
