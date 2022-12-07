@@ -1,135 +1,135 @@
-let storeHours = ["6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm","3pm", "4pm", "5pm","6pm", "7pm"];
 
-let objSeattle = {
-  name: "Seattle",
-  min: 23,
-  max: 65,
-  avgCookiesPerSale: 6.3,
-  getNumOfCookiesPerHour: function () {
-    for (let index = 0; index < storeHours.length; index++) {
-      let calculateCookies = Math.floor(seattleSalesPerHour() * this.avgCookiesPerSale)
-      this.numOfCookiesPerHour.push(calculateCookies)
-      // console.log(calculateCookies)
-    }
-  },
-  numOfCookiesPerHour: []
+'use strict';
 
-}
-// console.log(objSeattle.numOfCookiesPerHour);
+// GLOBAL VARIABLES
+let storeHours = ["6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm"];
+let allStoreObjects = [];
 
-objSeattle.getNumOfCookiesPerHour();
-// console.log(objSeattle);
+// Window to the DOM
+// let storesSelection = document.getElementById('storeProfiles');
+let storesSelection = document.getElementById('storeProfilesTable');
 
-// random number of customers per hour
+// HELPER FUNCTIONS
 
-function seattleSalesPerHour(min, max) {
-  min = objSeattle.min;
-  max = objSeattle.max;
+function randomSalesPerHour(min, max) {
+  min = this.min;
+  max = this.max;
   return Math.floor(Math.random() * (max - min) + min);
-} 
-
-let objTokyo = {
-  name: "Tokyo",
-  min: 3,
-  max: 24,
-  avgCookiesPerSale: 1.2,
-  getNumOfCookiesPerHour: function () {
-    for (let index = 0; index < storeHours.length; index++) {
-      let calculateCookies = Math.floor(tokyoSalesPerHour() * this.avgCookiesPerSale)
-      this.numOfCookiesPerHour.push(calculateCookies)
-      // console.log(calculateCookies)
-    }
-  },
-  numOfCookiesPerHour: []
-
 }
-// console.log(objSeattle.numOfCookiesPerHour);
+function random(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-objTokyo.getNumOfCookiesPerHour();
-// console.log(objSeattle);
+function renderAll() {
+  for (let i = 0; i < allStoreObjects.length; i++) {
+    allStoreObjects[i].getNumOfCookiesPerHour();
+    allStoreObjects[i].render();
 
-// random number of customers per hour
-
-function tokyoSalesPerHour(min, max) {
-  min = objTokyo.min;
-  max = objTokyo.max;
-  return Math.floor(Math.random() * (max - min) + min);
-} 
-
-// console.log(salesPerHour());
-
-// calculate and store simulated amounts of cookies purchase for each hour
-
-// store the results for each location in a separate array in location object
-
-
-// display the values of each array to the DOM
-// let arrayOfStores = [objSeattle, objTokyo, objDubai, objParis, objLima];
-// for (let index = 0; index < arrayOfStores.length; index++) {
-//   const element = array[index];
-  
-
-function render (storeObject) {
-  dataArr = [];
-  for (let index = 0; index < storeHours.length; index++) {
-    let data = `${storeHours[index]}: ${storeObject.numOfCookiesPerHour[index]}`;
-    dataArr.push(data);
+    console.log(allStoreObjects);
   }
-  return dataArr;
-}
-let seattleListItems = render(objSeattle);
-let tokyoListItems = render(objTokyo);
-console.log(render(objSeattle));
-console.log(render(objTokyo));
-// console.log(dataArr);
-
-
-// we need to:
-// get (from the DOM) who the parent element is going to be. where am I attaching this new element
-const parentElement = document.getElementById('storeProfiles');
-
-// create a new element, or elements, that represent each store
-// article
-// inside that article, h2 for the name, paragraph with their age, ul and some lis with their interests, image
-const article = document.createElement('article');
-parentElement.appendChild(article);
-
-const h2 = document.createElement('h2');
-h2.textContent = objSeattle.name;
-article.appendChild(h2);
-
-const p = document.createElement('p');
-p.textContent = 'This store is located in: ' + objSeattle.name;
-article.appendChild(p);
-
-const ul = document.createElement('ul');
-article.appendChild(ul);
-
-for (let i = 0; i < seattleListItems.length; i++) {
-  const li = document.createElement('li');
-  li.textContent = seattleListItems[i];
-  ul.appendChild(li);
 }
 
-// TOKYO
+// console.log(randomSalesPerHour);
 
-const h2b = document.createElement('h2');
-h2b.textContent = objTokyo.name;
-article.appendChild(h2b);
+function Store(name, min, max, avgCookiesPerSale) {
+  this.name = name;
+  this.min = min;
+  this.max = max;
+  this.avgCookiesPerSale = avgCookiesPerSale;
+  this.numOfCookiesPerHour = [];
+  this.numOfSales = [];
+  this.totalNeededDailyPerStore = 0;
 
-const pb = document.createElement('p');
-pb.textContent = 'This store is located in: ' + objTokyo.name;
-article.appendChild(pb);
+}
 
-const ulb = document.createElement('ul');
-article.appendChild(ulb);
+// MOVE ALL METHODS INTO PROTOTYPE OBJECT
 
-for (let i = 0; i < tokyoListItems.length; i++) {
-  const lib = document.createElement('li');
-  lib.textContent = tokyoListItems[i];
-  ulb.appendChild(lib);
+
+
+Store.prototype.calculateSalesPerHour = function () {
+  for (let index = 0; index < storeHours.length; index++) {
+    this.numOfSales.push(random(this.min, this.max));
+  }
+};
+Store.prototype.getNumOfCookiesPerHour = function () {
+  this.calculateSalesPerHour();
+  for (let index = 0; index < storeHours.length; index++) {
+    let hourlyCookies = Math.floor(this.numOfSales[index] * this.avgCookiesPerSale);
+    this.numOfCookiesPerHour.push(hourlyCookies);
+    this.totalNeededDailyPerStore += hourlyCookies;
+  }
+}
+
+Store.prototype.render = function () {
+  // const article = document.createElement('article');
+  // storesSelection.appendChild(article);
+
+  // const h2 = document.createElement('h2');
+  // h2.textContent = this.name;
+  // article.appendChild(h2);
+
+  // const p = document.createElement('p');
+  // p.textContent = 'This store is located in: ' + this.name;
+  // article.appendChild(p);
+
+  // const ul = document.createElement('ul');
+  // article.appendChild(ul);
+
+  // for (let i = 0; i < this.numOfCookiesPerHour.length; i++) {
+  //   const li = document.createElement('li');
+  //   li.textContent = this.numOfCookiesPerHour[i];
+  //   ul.appendChild(li);
+  // }
+  // const total = document.createElement('li');
+  // total.textContent = this.totalNeededDailyPerStore;
+  // ul.appendChild(total);
+
+  // TABLE
+
+  // const row1 = document.createElement('th');
+  // row1.textContent = this.storeHours;
+  // storesSelection.appendChild(row1);
+    
+
+
+  const row1 = document.createElement('tr');
+  storeProfilesTable.appendChild(row1);
+
+  const row1TH = document.createElement('th');
+  row1TH.textContent = "Location"
+  row1.appendChild(row1TH);
+
+  const row1TH2 = document.createElement('th');
+  row1TH2.textContent = "6am";
+  row1.appendChild(row1TH2);
+
+  const row1TH3 = document.createElement('th');
+  row1TH3.textContent = "7am";
+  row1.appendChild(row1TH3);
+
+  const row1TH4 = document.createElement('th');
+  row1TH4.textContent = "8am";
+  row1.appendChild(row1TH4);
+
+  const row2 = document.createElement('tr');
+  storeProfilesTable.appendChild(row2);
+
+  const locations = document.createElement('th');
+  locations.textContent = this.name;
+  row2.appendChild(locations);
+
+
+
 }
 
 
+// EXECUTABLE CODE
 
+let seattle = new Store("Seattle", 23, 65, 6.3);
+let tokyo = new Store("Tokyo", 3, 24, 1.2);
+console.log(seattle.numOfCookiesPerHour[0]);
 
+// push new object in that array - for easy storage - this will help with labs this week
+allStoreObjects.push(seattle, tokyo);
+
+renderAll();
