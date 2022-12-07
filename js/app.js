@@ -20,6 +20,26 @@ function random(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function renderHeader() {
+  const headerRow = document.createElement('tr');
+  storeProfilesTable.appendChild(headerRow);
+
+  const header = document.createElement('th');
+  header.textContent = "Store Locations";
+  headerRow.appendChild(header);
+
+  for (let i = 0; i < storeHours.length; i++) {
+    const headerHour = document.createElement('th');
+    headerHour.textContent = storeHours[i];
+    headerRow.appendChild(headerHour);  
+  }
+
+  const headerTotal = document.createElement('th');
+  headerTotal.textContent = "Totals";
+  headerRow.appendChild(headerTotal);
+}
+renderHeader();
+
 function renderAll() {
   for (let i = 0; i < allStoreObjects.length; i++) {
     allStoreObjects[i].getNumOfCookiesPerHour();
@@ -61,64 +81,23 @@ Store.prototype.getNumOfCookiesPerHour = function () {
 }
 
 Store.prototype.render = function () {
-  // const article = document.createElement('article');
-  // storesSelection.appendChild(article);
 
-  // const h2 = document.createElement('h2');
-  // h2.textContent = this.name;
-  // article.appendChild(h2);
+  const rowElem1 = document.createElement('tr');
+  storeProfilesTable.appendChild(rowElem1);
 
-  // const p = document.createElement('p');
-  // p.textContent = 'This store is located in: ' + this.name;
-  // article.appendChild(p);
+  const rowTDlocation = document.createElement('td');
+  rowTDlocation.textContent = this.name;
+  rowElem1.appendChild(rowTDlocation);
 
-  // const ul = document.createElement('ul');
-  // article.appendChild(ul);
-
-  // for (let i = 0; i < this.numOfCookiesPerHour.length; i++) {
-  //   const li = document.createElement('li');
-  //   li.textContent = this.numOfCookiesPerHour[i];
-  //   ul.appendChild(li);
-  // }
-  // const total = document.createElement('li');
-  // total.textContent = this.totalNeededDailyPerStore;
-  // ul.appendChild(total);
-
-  // TABLE
-
-  // const row1 = document.createElement('th');
-  // row1.textContent = this.storeHours;
-  // storesSelection.appendChild(row1);
+  for (let index = 0; index < this.numOfCookiesPerHour.length; index++) {
+    const rowTDhourly = document.createElement('td');
+    rowTDhourly.textContent = this.numOfCookiesPerHour[index];
+    rowElem1.appendChild(rowTDhourly);
     
-
-
-  const row1 = document.createElement('tr');
-  storeProfilesTable.appendChild(row1);
-
-  const row1TH = document.createElement('th');
-  row1TH.textContent = "Location"
-  row1.appendChild(row1TH);
-
-  const row1TH2 = document.createElement('th');
-  row1TH2.textContent = "6am";
-  row1.appendChild(row1TH2);
-
-  const row1TH3 = document.createElement('th');
-  row1TH3.textContent = "7am";
-  row1.appendChild(row1TH3);
-
-  const row1TH4 = document.createElement('th');
-  row1TH4.textContent = "8am";
-  row1.appendChild(row1TH4);
-
-  const row2 = document.createElement('tr');
-  storeProfilesTable.appendChild(row2);
-
-  const locations = document.createElement('th');
-  locations.textContent = this.name;
-  row2.appendChild(locations);
-
-
+  }
+  const rowTDtotal = document.createElement('td');
+  rowTDtotal.textContent = this.totalNeededDailyPerStore;
+  rowElem1.appendChild(rowTDtotal);
 
 }
 
@@ -131,5 +110,6 @@ console.log(seattle.numOfCookiesPerHour[0]);
 
 // push new object in that array - for easy storage - this will help with labs this week
 allStoreObjects.push(seattle, tokyo);
+
 
 renderAll();
