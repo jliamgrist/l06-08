@@ -35,8 +35,7 @@ body {
   border-color: #000;
   background-color: #88F2F2;
   border: 2px;
-  margin: 5%;
-  padding: 2%;
+  margin: 10%;
 
 }
 
@@ -48,12 +47,8 @@ table, th, td {
 
 }
 
-main section article {
-  padding: 4%;
-}
-
 main section button {
-  margin-top: 4%;
+  margin-top: 40px;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 10px;
@@ -66,6 +61,7 @@ main img {
 
 main ul {
   display: flex;
+  padding: 5%;
 }
 main li {
   border-radius: 10px;
@@ -73,7 +69,13 @@ main li {
 main section {
   display: flex;
   background-color: #fff;
+  max-width: 980px;
+  align-items: center;
+  flex-direction: column;
 }
-article {
-  padding: 10%;
+main article {
+  padding: 5%;
+  align-items: center;
+  text-align: center;
+
 }
