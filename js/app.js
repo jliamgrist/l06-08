@@ -45,9 +45,35 @@ function renderAll() {
     allStoreObjects[i].getNumOfCookiesPerHour();
     allStoreObjects[i].render();
 
-    console.log(allStoreObjects);
   }
 }
+
+function renderFooterTotal() {
+  const footerRow = document.createElement('tr');
+  storeProfilesTable.appendChild(footerRow);
+
+  const footerTitle = document.createElement('th');
+  footerTitle.textContent = "Hourly Totals:";
+  footerRow.appendChild(footerTitle);
+
+  for (let i = 0; i < allStoreObjects.numOfCookiesPerHour; i++) {
+    let totalHourly = 0;
+    for (let j = 0; j < allStoreObjects.numOfCookiesPerHour[i].length; j++) {
+      totalHourly += allStoreObjects[j][i];
+      
+    }
+    console.log(totalHourly);
+    // const footerTotal = document.createElement('td');
+    // footerTotal.textContent = totalHourly;
+    // footerRow.appendChild(totalHourly);    
+    
+  }
+
+
+  
+}
+
+
 
 // console.log(randomSalesPerHour);
 
@@ -116,3 +142,4 @@ allStoreObjects.push(seattle, tokyo, dubai, paris, lima);
 
 
 renderAll();
+renderFooterTotal();
