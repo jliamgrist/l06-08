@@ -9,6 +9,8 @@ h1, h2 {
 
 nav {
   display: flex;
+  margin-top: 4%;
+  margin-bottom: 6%;
 }
 
 nav img {
@@ -20,8 +22,8 @@ nav ul {
 }
 nav li {
   display: flex;
-  font-size: 20px;
-  margin-left: 30px;
+  font-size: 6vw;
+  margin-left: 10vw;
   color: #88F2F2;
   font-family: 'Crimson Pro', serif;
   font-size: 20px;
