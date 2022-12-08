@@ -47,12 +47,25 @@ table, th, td {
 
 }
 
+main {
+  width: 960px;
+  margin: auto;
+}
+
 main section button {
   margin-top: 40px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: coral;
+  border: #88F2F2;
+  border-radius: 4px;
+  transition: 150ms;
+}
+
+button:hover {
+  background-color: #88F2F2;
 }
 
 main img {
@@ -91,8 +104,17 @@ th, td {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding: 10px;
   border-color: #88F2F2;
+}
 
 p {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: large;
 }
 
+
+
+footer {
+  background-color: #88F2F2;
+  height: 150px;
+  width: auto;
+}
