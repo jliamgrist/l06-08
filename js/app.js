@@ -106,10 +106,13 @@ Store.prototype.render = function () {
 
 let seattle = new Store("Seattle", 23, 65, 6.3);
 let tokyo = new Store("Tokyo", 3, 24, 1.2);
-console.log(seattle.numOfCookiesPerHour[0]);
+let dubai = new Store("Dubai", 11, 38, 3.7);
+let paris = new Store("Paris", 20, 38, 2.3);
+let lima = new Store("Lima", 2, 16, 4.6);
+
 
 // push new object in that array - for easy storage - this will help with labs this week
-allStoreObjects.push(seattle, tokyo);
+allStoreObjects.push(seattle, tokyo, dubai, paris, lima);
 
 
 renderAll();
