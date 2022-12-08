@@ -59,3 +59,21 @@ main section button {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+main img {
+  padding: 5%;
+}
+
+main ul {
+  display: flex;
+}
+main li {
+  border-radius: 10px;
+}
+main section {
+  display: flex;
+  background-color: #fff;
+}
+article {
+  padding: 10%;
+}
