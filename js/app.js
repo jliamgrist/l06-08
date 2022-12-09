@@ -1,6 +1,8 @@
 
 'use strict';
 
+
+
 // GLOBAL VARIABLES
 let storeHours = ["6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm"];
 let allStoreObjects = [];
@@ -52,30 +54,24 @@ function renderFooterTotal() {
   const footerRow = document.createElement('tr');
   storeProfilesTable.appendChild(footerRow);
 
-  const footerTitle = document.createElement('th');
+  const footerTitle = document.createElement('td');
   footerTitle.textContent = "Hourly Totals:";
   footerRow.appendChild(footerTitle);
 
-  for (let i = 0; i < allStoreObjects.numOfCookiesPerHour; i++) {
+  for (let i = 0; i < storeHours.length; i++) {
     let totalHourly = 0;
-    for (let j = 0; j < allStoreObjects.numOfCookiesPerHour[i].length; j++) {
-      totalHourly += allStoreObjects[j][i];
+    for (let j = 0; j < allStoreObjects.length; j++) {
+      totalHourly += allStoreObjects[j].numOfCookiesPerHour[i];
       
-    }
-    console.log(totalHourly);
-    // const footerTotal = document.createElement('td');
-    // footerTotal.textContent = totalHourly;
-    // footerRow.appendChild(totalHourly);    
-    
+    } 
+   const footerTotal = document.createElement('td');
+   footerTotal.textContent = totalHourly;
+   footerRow.appendChild(footerTotal);
   }
 
 
   
 }
-
-
-
-// console.log(randomSalesPerHour);
 
 function Store(name, min, max, avgCookiesPerSale) {
   this.name = name;
@@ -88,9 +84,26 @@ function Store(name, min, max, avgCookiesPerSale) {
 
 }
 
+// Form
+
+let form1 = document.getElementById("form1");
+form1.addEventListener('submit', handleSubmit);
+
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let storeNameInput = event.target.storeNameInput.value;
+  let minInput = event.target.minCustomers.value;
+  let maxInput = event.target.maxCustomers.value;
+  let avgCookiesInput = event.target.avgCookiesInput.value;
+  new Store(storeNameInput, minInput, maxInput, avgCookiesInput);
+console.log(new Store(storeNameInput, minInput, maxInput, avgCookiesInput));
+allStoreObjects.push(new Store(storeNameInput, minInput, maxInput, avgCookiesInput))  ;
+renderAll();
+renderFooterTotal();
+}
+
 // MOVE ALL METHODS INTO PROTOTYPE OBJECT
-
-
 
 Store.prototype.calculateSalesPerHour = function () {
   for (let index = 0; index < storeHours.length; index++) {

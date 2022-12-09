@@ -47,24 +47,42 @@ table, th, td {
 
 }
 
+main {
+  width: 1080px;
+  margin: auto;
+}
+
 main section button {
   margin-top: 40px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: coral;
+  border: #88F2F2;
+  border-radius: 4px;
+  transition: 150ms;
+}
+
+button:hover {
+  background-color: #88F2F2;
 }
 
 main img {
   padding: 5%;
+  
 }
 
 main ul {
   display: flex;
   align-items: center;
+  padding: 30px;
+  justify-content: center;
+  background-color: #fff;
 }
 main li {
   border-radius: 10px;
+  padding: 30px;
 }
 main section {
   display: flex;
@@ -72,6 +90,8 @@ main section {
   max-width: 980px;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
+  margin-top: 5%;
 }
 main article {
   padding: 5%;
@@ -91,8 +111,87 @@ th, td {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding: 10px;
   border-color: #88F2F2;
+}
 
 p {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: large;
 }
 
+
+
+footer {
+  background-color: #88F2F2;
+  height: 150px;
+  width: auto;
+}
+
+#form1 {
+  padding: 5%;
+}
+
+form {
+  /* Center the form on the page */
+  margin: 0 auto;
+  width: 400px;
+  /* Form outline */
+  border: none;
+  border-radius: 1em;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+form li + li {
+  margin-top: 1em;
+}
+
+label {
+  /* Uniform size & alignment */
+  display: inline;
+  width: 100px;
+  text-align: left;
+}
+
+input, textarea {
+
+  font: 1em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+  /* Uniform text field size */
+  width: 300px;
+  height: 30px;
+  box-sizing: border-box;
+
+  /* Match form field borders */
+  border: 4px solid #88F2F2;
+}
+
+input:focus,
+textarea:focus {
+  /* Additional highlight for focused elements */
+  border-color: #88F2F2;
+}
+
+textarea {
+  /* Align multiline text fields with their labels */
+  vertical-align: top;
+
+  /* Provide space to type some text */
+  height: 5em;
+}
+
+.button {
+  /* Align buttons with the text fields */
+  padding: 15px 20px 15px 20px; /* same size as the label elements */
+  margin: 10px;
+}
+
+.button {
+  /* This extra margin represent roughly the same space as the space
+     between the labels and their text fields */
+  margin-left: 0.5em;
+}
