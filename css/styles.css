@@ -48,7 +48,7 @@ table, th, td {
 }
 
 main {
-  width: 960px;
+  width: 1080px;
   margin: auto;
 }
 
@@ -76,8 +76,9 @@ main img {
 main ul {
   display: flex;
   align-items: center;
-  border-radius: 50%;
   padding: 30px;
+  justify-content: center;
+  background-color: #fff;
 }
 main li {
   border-radius: 10px;
@@ -89,6 +90,8 @@ main section {
   max-width: 980px;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
+  margin-top: 5%;
 }
 main article {
   padding: 5%;
