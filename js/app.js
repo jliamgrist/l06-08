@@ -72,12 +72,13 @@ form1.addEventListener('submit', handleSubmit);
 function handleSubmit(event) {
   event.preventDefault();
   let storeNameInput = event.target.storeNameInput.value;
-  let minInput = event.target.minCustomers.value;
-  let maxInput = event.target.maxCustomers.value;
-  let avgCookiesInput = event.target.avgCookiesInput.value;
+  let minInput = +event.target.minCustomers.value;
+  let maxInput = +event.target.maxCustomers.value;
+  let avgCookiesInput = +event.target.avgCookiesInput.value;
   let newStore = new Store(storeNameInput, minInput, maxInput, avgCookiesInput);
 console.log(newStore);
 allStoreObjects.push(newStore);
+document.getElementById('storeProfilesTable').deleteRow(-1);
 newStore.getNumOfCookiesPerHour();
 newStore.render();
 renderFooterTotal();
