@@ -50,28 +50,7 @@ function renderAll() {
   }
 }
 
-function renderFooterTotal() {
-  const footerRow = document.createElement('tr');
-  storeProfilesTable.appendChild(footerRow);
 
-  const footerTitle = document.createElement('td');
-  footerTitle.textContent = "Hourly Totals:";
-  footerRow.appendChild(footerTitle);
-
-  for (let i = 0; i < storeHours.length; i++) {
-    let totalHourly = 0;
-    for (let j = 0; j < allStoreObjects.length; j++) {
-      totalHourly += allStoreObjects[j].numOfCookiesPerHour[i];
-      
-    } 
-   const footerTotal = document.createElement('td');
-   footerTotal.textContent = totalHourly;
-   footerRow.appendChild(footerTotal);
-  }
-
-
-  
-}
 
 function Store(name, min, max, avgCookiesPerSale) {
   this.name = name;
@@ -93,14 +72,40 @@ form1.addEventListener('submit', handleSubmit);
 function handleSubmit(event) {
   event.preventDefault();
   let storeNameInput = event.target.storeNameInput.value;
-  let minInput = event.target.minCustomers.value;
-  let maxInput = event.target.maxCustomers.value;
-  let avgCookiesInput = event.target.avgCookiesInput.value;
-  new Store(storeNameInput, minInput, maxInput, avgCookiesInput);
-console.log(new Store(storeNameInput, minInput, maxInput, avgCookiesInput));
-allStoreObjects.push(new Store(storeNameInput, minInput, maxInput, avgCookiesInput))  ;
-renderAll();
+  let minInput = +event.target.minCustomers.value;
+  let maxInput = +event.target.maxCustomers.value;
+  let avgCookiesInput = +event.target.avgCookiesInput.value;
+  let newStore = new Store(storeNameInput, minInput, maxInput, avgCookiesInput);
+console.log(newStore);
+allStoreObjects.push(newStore);
+document.getElementById('storeProfilesTable').deleteRow(-1);
+newStore.getNumOfCookiesPerHour();
+newStore.render();
 renderFooterTotal();
+form1.reset();
+}
+
+function renderFooterTotal() {
+  const footerRow = document.createElement('tr');
+  storeProfilesTable.appendChild(footerRow);
+
+  const footerTitle = document.createElement('td');
+  footerTitle.textContent = "Hourly Totals:";
+  footerRow.appendChild(footerTitle);
+
+  for (let i = 0; i < storeHours.length; i++) {
+    let totalHourly = 0;
+    for (let j = 0; j < allStoreObjects.length; j++) {
+      totalHourly += allStoreObjects[j].numOfCookiesPerHour[i];
+      
+    } 
+   const footerTotal = document.createElement('td');
+   footerTotal.textContent = totalHourly;
+   footerRow.appendChild(footerTotal);
+  }
+
+
+  
 }
 
 // MOVE ALL METHODS INTO PROTOTYPE OBJECT
